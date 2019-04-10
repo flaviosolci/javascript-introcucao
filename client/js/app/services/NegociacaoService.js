@@ -4,7 +4,7 @@ class NegociacaoService {
         this._httpService = new HttpService();
     }
 
-    obterNegociacoesDaSemana() {
+    obterNegociacoes() {
         //
         //  reject('Não foi possível obter as negociações da semana');
         return new Promise((resolve, reject) => {
