@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aprendendo Indexed DB</title>
+</head>
+
+<body>
+    <h1>Aprendendo Indexed DB</h1>
+    <script src="js/app/models/Negociacao.js"></script>
+    <script>
+
+        const STORE_NEGOCIACAO = 'negociacao';
+        let connection;
+
+        function adiciona() {
+            let transaction = connection.transaction([STORE_NEGOCIACAO], 'readwrite');
+            let store = transaction.objectStore(STORE_NEGOCIACAO);
+            let negociacao = new Negociacao(new Date, 1, 200);
+            let request = store.add(negociacao)
+
+            request.onsuccess = e => {
+                console.log('Negociacao incluida com sucesso');
+            }
+
+            request.onerror = e => {
+                console.log('Não foi possivel adicionar');
+            }
+        }
+
+        function listaTodos() {
+
+            let transaction = connection.transaction([STORE_NEGOCIACAO], 'readonly');
+            let store = transaction.objectStore(STORE_NEGOCIACAO);
+            let negociacoes = [];
+
+            let cursor = store.openCursor();
+
+            // 
+            cursor.onsuccess = e => {
+                let atual = e.target.result;
+                if (atual) {
+                    let dado = atual.value;
+                    negociacoes.push(new Negociacao(dado._data, dado._quantidade, dado._valor));
+                    atual.continue();
+                } else {
+                    console.log(negociacoes);
+
+                }
+            };
+
+            cursor.onerror = e => {
+                console.log('Error:' + e.target.error.name);
+            };
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>
