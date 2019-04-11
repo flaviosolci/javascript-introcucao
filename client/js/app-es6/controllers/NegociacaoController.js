@@ -1,11 +1,13 @@
-/** 
- * Classe controller for all Negociacao
- * 
- * @author Flavio
- * @since 0.0.1
- */
-class NegociacaoController {
+import { ListaNegociacoes } from '../models/ListaNegociacoes';
+import { Mensagem } from '../models/Mensagem';
+import { Negociacao } from '../models/Negociacao';
+import { MensagemView } from '../views/MensagemView';
+import { NegociacoesView } from '../views/NegociacoesView';
+import { NegociacaoService } from '../services/NegociacaoService';
+import { DateHelper } from '../helpers/DateHelper';
+import { Bind } from '../helpers/Bind';
 
+export class NegociacaoController {
 
     constructor() {
         let $ = document.querySelector.bind(document);

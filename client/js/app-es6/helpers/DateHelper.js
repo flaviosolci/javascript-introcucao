@@ -1,7 +1,7 @@
-class DateHelper {
+export class DateHelper {
 
     constructor() {
-        throw new Error('DateHelper não pode ser instanciada');
+        throw new Error('DateHelper não pode ser instanciado!');
     }
 
     static textToDate(text) {

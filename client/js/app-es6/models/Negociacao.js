@@ -1,18 +1,5 @@
-/** 
- * Classe negociacao
- * @author Flavio
- * @since 0.0.1
- */
-class Negociacao {
+export class Negociacao {
 
-    /** Constructor
-     * @param data
-     *  Date of this negotiation
-     * @param quantidade
-     *  Quantity of this negotiation
-     * @param valor
-     *  Value of this negotiation
-     */
     constructor(data, quantidade, valor) {
         this._data = new Date(data.getTime());
         this._quantidade = quantidade;
